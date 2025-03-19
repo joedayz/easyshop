@@ -1,17 +1,30 @@
 package pe.joedayz.easyshop.auth.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import lombok.ToString;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import pe.joedayz.easyshop.entities.Address;
 
 /**
  * @author josediaz
@@ -22,7 +35,7 @@ import org.springframework.data.annotation.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User  {
+public class User  implements UserDetails {
 
   @Id
   @GeneratedValue
@@ -50,4 +63,28 @@ public class User  {
 
   private boolean enabled = false;
 
+
+  @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+  @JoinTable(name = "AUTH_USER_AUTHORITY",joinColumns = @JoinColumn(referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(referencedColumnName = "id"))
+  private List<Authority> authorities;
+
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+  @ToString.Exclude
+  private List<Address> addressList;
+
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return authorities;
+  }
+
+  @Override
+  public String getPassword() {
+    return this.password;
+  }
+
+  @Override
+  public String getUsername() {
+    return this.email;
+  }
 }
