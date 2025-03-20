@@ -1,13 +1,13 @@
 package pe.joedayz.easyshop.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.thecodereveal.shopease.auth.entities.User;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import pe.joedayz.easyshop.auth.entities.User;
 
 @Entity
 @Table(name="orders")
