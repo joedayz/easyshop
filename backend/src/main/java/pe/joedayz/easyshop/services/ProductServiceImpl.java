@@ -24,9 +24,11 @@ public class ProductServiceImpl implements ProductService {
   @Autowired
   private ProductMapper productMapper;
 
+
   @Override
-  public Product addProduct(ProductDto product) {
-    return null;
+  public Product addProduct(ProductDto productDto) {
+    Product product = productMapper.mapToProductEntity(productDto);
+    return productRepository.save(product);
   }
 
   @Override
@@ -60,16 +62,24 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public ProductDto getProductById(UUID id) {
-    return null;
+    Product product= productRepository.findById(id).orElseThrow(()-> new ResourceNotFoundEx("Product Not Found!"));
+    ProductDto productDto = productMapper.mapProductToDto(product);
+    productDto.setCategoryId(product.getCategory().getId());
+    productDto.setCategoryTypeId(product.getCategoryType().getId());
+    productDto.setVariants(productMapper.mapProductVariantListToDto(product.getProductVariants()));
+    productDto.setProductResources(productMapper.mapProductResourcesListDto(product.getResources()));
+    return productDto;
   }
 
   @Override
   public Product updateProduct(ProductDto productDto, UUID id) {
-    return null;
+    Product product= productRepository.findById(id).orElseThrow(()-> new ResourceNotFoundEx("Product Not Found!"));
+    productDto.setId(product.getId());
+    return productRepository.save(productMapper.mapToProductEntity(productDto));
   }
 
   @Override
-  public Product fetchProductById(UUID uuid) throws Exception {
-    return null;
+  public Product fetchProductById(UUID id) throws Exception {
+    return productRepository.findById(id).orElseThrow(BadRequestException::new);
   }
 }
