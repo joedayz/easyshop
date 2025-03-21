@@ -14,7 +14,7 @@ import pe.joedayz.easyshop.repositories.AddressRepository;
  * @author josediaz
  **/
 @Service
-public class AdressService {
+public class AddressService {
 
   @Autowired
   private UserDetailsService userDetailsService;
