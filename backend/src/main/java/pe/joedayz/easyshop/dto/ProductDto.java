@@ -3,10 +3,18 @@ package pe.joedayz.easyshop.dto;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author josediaz
  **/
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ProductDto {
 
   private UUID id;
