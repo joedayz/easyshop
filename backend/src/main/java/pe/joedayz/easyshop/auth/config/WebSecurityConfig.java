@@ -21,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * @author josediaz
  **/
 @Configuration
-@EnableWebSecurity
+//@EnableWebSecurity
 public class WebSecurityConfig {
 
   @Autowired
@@ -49,7 +49,7 @@ public class WebSecurityConfig {
     return http.build();
   }
 
-  //Bean
+  //@Bean
   public WebSecurityCustomizer webSecurityCustomizer() {
     return (web) -> web.ignoring().requestMatchers(publicApis);
   }
