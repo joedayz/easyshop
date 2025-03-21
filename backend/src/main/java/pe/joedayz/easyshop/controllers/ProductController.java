@@ -29,7 +29,7 @@ public class ProductController {
   public ResponseEntity<List<ProductDto>> getAllProducts(@RequestParam(required = false,name = "categoryId",value = "categoryId") UUID categoryId,
       @RequestParam(required = false,name = "typeId",value = "typeId") UUID typeId,  @RequestParam(required = false)  String slug, HttpServletResponse response){
     List<ProductDto> productList = new ArrayList<>();
-    if(StringUtils.isNotBlank(slug)){
+    if(StringUtils.isNotBlank(slug)){  // http://localhost:8080/api/products?slug=zapatillas-nike-men
       ProductDto productDto = productService.getProductBySlug(slug);
       productList.add(productDto);
     }

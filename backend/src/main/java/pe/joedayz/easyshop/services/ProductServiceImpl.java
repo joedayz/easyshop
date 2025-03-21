@@ -3,12 +3,14 @@ package pe.joedayz.easyshop.services;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import pe.joedayz.easyshop.dto.ProductDto;
 import pe.joedayz.easyshop.entities.Product;
 import pe.joedayz.easyshop.exceptions.ResourceNotFoundEx;
 import pe.joedayz.easyshop.mapper.ProductMapper;
 import pe.joedayz.easyshop.repositories.ProductRepository;
+import pe.joedayz.easyshop.specification.ProductSpecification;
 
 /**
  * @author josediaz
@@ -29,7 +31,17 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public List<ProductDto> getAllProducts(UUID categoryId, UUID typeId) {
-    return List.of();
+    Specification<Product> productSpecification= Specification.where(null);
+
+    if(null != categoryId){
+      productSpecification = productSpecification.and(ProductSpecification.hasCategoryId(categoryId));
+    }
+    if(null != typeId){
+      productSpecification = productSpecification.and(ProductSpecification.hasCategoryTypeId(typeId));
+    }
+
+    List<Product> products = productRepository.findAll(productSpecification);
+    return productMapper.getProductDtos(products);
   }
 
   @Override

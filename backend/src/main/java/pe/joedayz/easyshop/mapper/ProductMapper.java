@@ -28,6 +28,9 @@ public class ProductMapper {
         .slug(product.getSlug())
         .thumbnail(getProductThumbnail(product.getResources())).build();
   }
+  public List<ProductDto> getProductDtos(List<Product> products) {
+    return products.stream().map(this::mapProductToDto).toList();
+  }
 
   public List<ProductResourceDto> mapProductResourcesListDto(List<Resources> resources) {
     return resources.stream().map(this::mapResourceToDto).toList();
