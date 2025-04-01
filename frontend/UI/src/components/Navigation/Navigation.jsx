@@ -5,12 +5,12 @@ import {CartIcon} from "../common/CartIcon.jsx";
 
 const Navigation = () => {
     return (
-        <nav className='flex items-center py-6 px-16 justify-between gap-40'>
-            <div className='flex item-center gap-6'>
+        <nav className='flex items-center py-6 px-16 justify-between gap-20 custom-nav'>
+            <div className='flex items-center gap-6'>
                 {/* Logo */}
                 <a className='text-3xl text-black font-bold gap-8' href="/">EasyShop</a>
             </div>
-            <div className='flex flex-wrap items-center gap-8 flex-1'>
+            <div className='flex flex-wrap items-center gap-10'>
                 {/* Nav items */}
                 <ul className='flex gap-14 text-gray-600 hover:text-black'>
                     <li><a href="/">Shop</a></li>
