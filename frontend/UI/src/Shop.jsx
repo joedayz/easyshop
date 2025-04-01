@@ -1,7 +1,7 @@
-import './App.css'
+import './Shop.css'
 import Navigation from "./components/Navigation/Navigation.jsx";
 
-function App() {
+function Shop() {
 
 
   return (
@@ -11,4 +11,4 @@ function App() {
   )
 }
 
-export default App
+export default Shop
