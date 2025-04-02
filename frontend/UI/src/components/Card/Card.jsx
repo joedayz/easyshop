@@ -1,5 +1,4 @@
 import React from 'react'
-import Jeans from '../../assets/img/jeans.jpg'
 
 
 const Card = ({imagePath,title}) => {
