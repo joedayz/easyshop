@@ -1,12 +1,15 @@
 import React from 'react'
-import SectionHeading from "./SectionsHeading/SectionHeading.jsx";
-import Card from "../Card/Card.jsx";
-import Jeans from "../../assets/img/jeans.jpg";
-import Shirts from "../../assets/img/shirts.jpg";
-import Tshirt from "../../assets/img/tshirts.jpeg";
-import dresses from "../../assets/img/dresses.jpg";
-import Carousel from "react-multi-carousel";
-import {responsive} from "../../utils/Section.constants.js";
+import SectionHeading from './SectionsHeading/SectionHeading'
+import Card from '../Card/Card';
+import Jeans from '../../assets/img/jeans.jpg'
+import Shirts from '../../assets/img/shirts.jpg'
+import Tshirt from '../../assets/img/tshirts.jpeg'
+import dresses from '../../assets/img/dresses.jpg'
+import Joggers from '../../assets/img/joggers.jpg'
+import Kurtis from '../../assets/img/kurtis.jpg'
+import Carousel from 'react-multi-carousel';
+import {responsive} from '../../utils/Section.constants';
+import './NewArrivals.css';
 
 const items = [{
     'title': 'Jeans',
@@ -20,7 +23,15 @@ const items = [{
 }, {
     'title': 'Dresses',
     imagePath: dresses
-}];
+},
+    {
+        'title': 'Joggers',
+        imagePath: Joggers
+    },
+    {
+        'title': 'Kurtis',
+        imagePath: Kurtis
+    }];
 
 const NewArrivals = () => {
     return (
@@ -37,7 +48,8 @@ const NewArrivals = () => {
                 itemClass={'react-slider-custom-item'}
                 className='px-8'
             >
-                {items && items?.map((item,index)=> <Card key={item?.title +index} title={item.title} imagePath={item.imagePath}/>)}
+                {items && items?.map((item, index) => <Card key={item?.title + index} title={item.title}
+                                                            imagePath={item.imagePath}/>)}
 
             </Carousel>
         </>
