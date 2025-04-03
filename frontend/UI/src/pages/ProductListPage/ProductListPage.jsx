@@ -1,6 +1,7 @@
 import React, {useMemo} from 'react'
 import FilterIcon from "../../components/common/FiterIcon.jsx";
 import content from '../../data/content.json'
+import Categories from "../../components/Filters/Categories.jsx";
 
 const categories = content?.categories;
 
@@ -22,6 +23,7 @@ const ProductListPage = ({categoryType}) => {
                     </div>
                     <div>
                         <p className='text-[16px] text-black'>Categories</p>
+                        <Categories types={categoryContent?.types}/>
                     </div>
                 </div>
 
