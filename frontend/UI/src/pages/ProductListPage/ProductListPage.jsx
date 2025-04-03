@@ -3,6 +3,7 @@ import FilterIcon from "../../components/common/FiterIcon.jsx";
 import content from '../../data/content.json'
 import Categories from "../../components/Filters/Categories.jsx";
 import PriceFilter from "../../components/Filters/PriceFilter.jsx";
+import ColorsFilter from "../../components/Filters/ColorsFilter.jsx";
 
 const categories = content?.categories;
 
@@ -33,6 +34,8 @@ const ProductListPage = ({categoryType}) => {
                         <PriceFilter/>
                         <hr></hr>
                         { /* Colors */}
+                        <ColorsFilter colors={categoryContent?.meta_data?.colors}/>
+                        { /* Sizes */}
                     </div>
                 </div>
 
