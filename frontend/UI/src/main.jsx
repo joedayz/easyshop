@@ -1,24 +1,36 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import {StrictMode} from 'react'
+import {createRoot} from 'react-dom/client'
 import './index.css'
-import Shop from './Shop.jsx'
 import 'react-multi-carousel/lib/styles.css'
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {RouterProvider, createBrowserRouter} from "react-router-dom";
 import ProductListPage from "./pages/ProductListPage/ProductListPage.jsx";
+import ShopApplicationWrapper from "./pages/ShopApplicationWrapper.jsx";
+import Shop from "./Shop.jsx";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Shop />,
-    },
-    {
-        path: "/womens",
-        element: <ProductListPage />,
-    }, // Ruta para 404
+        element: <ShopApplicationWrapper/>,
+
+        children: [
+            {
+                path: "/",
+                element: <Shop/>
+            },
+            {
+                path: "/women",
+                element: <ProductListPage categoryType={'WOMEN'}/>,
+            },
+            {
+                path: "/men",
+                element: <ProductListPage categoryType={'MEN'}/>,
+            },
+        ]
+    }
 ]);
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-      <RouterProvider router={router} />
-  </StrictMode>,
+    <StrictMode>
+        <RouterProvider router={router}/>
+    </StrictMode>,
 )

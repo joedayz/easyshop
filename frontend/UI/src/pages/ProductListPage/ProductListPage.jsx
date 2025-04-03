@@ -1,11 +1,18 @@
-import React from 'react'
-import Navigation from "../../components/Navigation/Navigation.jsx";
+import React, {useMemo} from 'react'
 import FilterIcon from "../../components/common/FiterIcon.jsx";
+import content from '../../data/content.json'
 
-const ProductListPage = () => {
+const categories = content?.categories;
+
+const ProductListPage = ({categoryType}) => {
+
+    const categoryContent = useMemo(()=>{
+        return categories?.find(category => category.code === categoryType);
+    },[categoryType]);
+
+
     return (
         <div>
-            <Navigation/>
             <div className='flex'>
                 <div className='w-[20%] p-[20px] border rounded-lg m-[20px]'>
                     { /* Filters */}
@@ -18,8 +25,8 @@ const ProductListPage = () => {
                     </div>
                 </div>
 
-                <div className='p-[40px]'>
-                    <p>Hello1</p>
+                <div className='p-[15px]'>
+                    <p className='text-black'>{categoryContent?.description}</p>
                     { /* Products */}
                 </div>
 
