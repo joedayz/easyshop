@@ -12,7 +12,6 @@ function Shop() {
 
     return (
         <div className="App">
-            <Navigation/>
             <HeroSection/>
             <NewArrivals/>
             {content?.categories && content?.categories?.map((item, index) => <Category key={item?.title+index} {...item}/>)}
