@@ -17,20 +17,22 @@ const ProductDetails = () => {
     },[product]);
 
     useEffect(() => {
+        setImage(product?.thumbnail);
         setBreadCrumbLink([]);
-        const arrayLinks = [{ title: 'Shop', path:'/'}, {
+        const arrayLinks = [{ title: 'Shop', path: '/' }, {
             title: productCategory?.name,
-            path: productCategory?.path
+            path: productCategory?.name
         }];
-        const productType = productCategory?.types?.find((item)=> item?.type_id === product?.type_id);
+        const productType = productCategory?.categoryTypes?.find((item)=> item?.id === product?.categoryTypeId);
+
         if(productType){
-            breadCrumbLinks?.push({
-              title: productType?.name,
-              path: productType?.path
+            arrayLinks?.push({
+                title: productType?.name,
+                path: productType?.name
             })
         }
         setBreadCrumbLink(arrayLinks);
-    },[productCategory, product])
+    }, [productCategory, product]);
 
 
     return (
@@ -57,10 +59,10 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
-            <div className='w-[60%]'>
+            <div className='w-[60%] px-10'>
                 {/* Product Description */}
                 <Breadcrumb links={breadCrumbLinks}/>
-                <p className='text-3xl pt-2'>{product?.title}</p>
+                <p className='text-3xl pt-4'>{product?.name}</p>
             </div>
 
         </div>
