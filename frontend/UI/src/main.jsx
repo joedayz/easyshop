@@ -25,6 +25,10 @@ const router = createBrowserRouter([
                 path: "/men",
                 element: <ProductListPage categoryType={'MEN'}/>,
             },
+            {
+                path: "/kids",
+                element: <ProductListPage categoryType={'KIDS'}/>,
+            },
         ]
     }
 ]);
