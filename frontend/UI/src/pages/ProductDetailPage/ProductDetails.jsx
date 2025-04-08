@@ -1,13 +1,30 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {useLoaderData} from "react-router-dom";
 
 const ProductDetails = () => {
 
     const { product } = useLoaderData();
-    //const [image, setImage] = useState(product?.images[0]?.startsWith('http') ? product?.image[0] : product?.thumbnail);
+    const [image, setImage] = useState(product?.thumbnail);
 
     return (
-        <div>ProductDetails { product?.title }</div>
+        <div className='flex flex-col md:flex-row px-10'>
+            <div className='w-[100%] lg:w-[50%] md:w-[40%]'>
+                {/* Image */}
+                <div className='flex flex-col md:flex-row'>
+                    <div className='w-[100%] md:w-[20%] justify-center h-[40px] md:h-[420px]'>
+                        {/* Stack images */}
+                        <div className='flex flex-row md:flex-col justify-center h-full'>
+                            <p>Hello</p>
+                        </div>
+
+                    </div>
+                    <div className='w-full md:w-[80%] flex justify-center md:pt-0 pt-10'>
+                        <img src={image} className='h-full w-full max-h-[520px]
+         border rounded-lg cursor-pointer object-cover' alt={product?.title} />
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }
 
