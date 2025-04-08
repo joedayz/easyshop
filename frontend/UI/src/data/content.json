@@ -289,7 +289,7 @@
       "size": ["S", "M", "L"],
       "color": ["Purple"],
       "discount": 10,
-      "images": ["hoodie-purple1.jpg", "hoodie-purple2.jpg"],
+      "images": ["https://images.pexels.com/photos/914668/pexels-photo-914668.jpeg", "https://images.pexels.com/photos/914668/pexels-photo-914668.jpeg"],
       "thumbnail": "https://images.pexels.com/photos/914668/pexels-photo-914668.jpeg",
       "rating": 4.6
     },

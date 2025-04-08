@@ -4,7 +4,7 @@ import {useLoaderData} from "react-router-dom";
 const ProductDetails = () => {
 
     const { product } = useLoaderData();
-    const [image, setImage] = useState(product?.thumbnail);
+    const [image, setImage] = useState(product?.images[0]?.startsWith('http') ? product?.images[0] : product?.thumbnail);
 
     return (
         <div className='flex flex-col md:flex-row px-10'>
@@ -14,7 +14,13 @@ const ProductDetails = () => {
                     <div className='w-[100%] md:w-[20%] justify-center h-[40px] md:h-[420px]'>
                         {/* Stack images */}
                         <div className='flex flex-row md:flex-col justify-center h-full'>
-                            <p>Hello</p>
+                            {
+                                product?.images?.map((item, index) => (
+                                    <button key={index} onClick={() => setImage(item?.url)} className='rounded-lg w-fit p-2 mb-2'>
+                                        <img src={item} className='h-[60px] w-[60px] rounded-lg bg-cover bg-center hover:scale-105 hover:border'
+                                             alt={'sample-' + index} /></button>
+                                ))
+                            }
                         </div>
 
                     </div>
