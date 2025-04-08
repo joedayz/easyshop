@@ -6,6 +6,8 @@ import {RouterProvider, createBrowserRouter} from "react-router-dom";
 import ProductListPage from "./pages/ProductListPage/ProductListPage.jsx";
 import ShopApplicationWrapper from "./pages/ShopApplicationWrapper.jsx";
 import Shop from "./Shop.jsx";
+import ProductDetails from "./pages/ProductDetailPage/ProductDetails.jsx";
+import {loadProductById} from "./routes/product.jsx";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +26,11 @@ const router = createBrowserRouter([
             {
                 path: "/men",
                 element: <ProductListPage categoryType={'MEN'}/>,
+            },
+            {
+                path: "/product/:productId",
+                loader: loadProductById,
+                element: <ProductDetails/>,
             },
         ]
     }
