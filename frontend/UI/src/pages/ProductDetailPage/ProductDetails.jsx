@@ -5,6 +5,7 @@ import content from '../../data/content.json'
 import Rating from "../../components/Rating/Rating.jsx";
 import SizeFilter from "../../components/Filters/SizeFilter.jsx";
 import _ from 'lodash';
+import ProductColors from "./ProductColors.jsx";
 
 const categories = content?.categories;
 
@@ -90,6 +91,10 @@ const ProductDetails = () => {
                     </div>
                 </div>
                 <div className='mt-2'><SizeFilter sizes={product?.size} hidleTitle/> </div>
+                <div>
+                    <p className='text-lg bold'>Colors Available</p>
+                    <ProductColors colors={product?.color}/>
+                </div>
             </div>
 
         </div>
