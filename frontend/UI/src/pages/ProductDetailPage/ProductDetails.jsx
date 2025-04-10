@@ -2,6 +2,7 @@ import React, {useEffect, useMemo, useState} from 'react'
 import {useLoaderData} from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb.jsx";
 import content from '../../data/content.json'
+import Rating from "../../components/Rating/Rating.jsx";
 
 
 const categories = content?.categories;
@@ -63,6 +64,7 @@ const ProductDetails = () => {
                 {/* Product Description */}
                 <Breadcrumb links={breadCrumbLinks}/>
                 <p className='text-3xl pt-4'>{product?.name}</p>
+                <Rating rating={product?.rating}/>
             </div>
 
         </div>
