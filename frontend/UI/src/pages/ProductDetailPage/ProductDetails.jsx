@@ -1,9 +1,10 @@
 import React, {useEffect, useMemo, useState} from 'react'
-import {useLoaderData} from "react-router-dom";
+import {Link, useLoaderData} from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb.jsx";
 import content from '../../data/content.json'
 import Rating from "../../components/Rating/Rating.jsx";
-
+import SizeFilter from "../../components/Filters/SizeFilter.jsx";
+import _ from 'lodash';
 
 const categories = content?.categories;
 
@@ -12,10 +13,25 @@ const ProductDetails = () => {
     const { product } = useLoaderData();
     const [image, setImage] = useState(product?.images[0]?.startsWith('http') ? product?.images[0] : product?.thumbnail);
     const [breadCrumbLinks, setBreadCrumbLink] = useState([]);
+    const [selecteSize,setSelectedSize] = useState('');
+    const [error,setError] = useState('');
 
     const productCategory = useMemo(()=>{
        return categories?.find((category)=>category?.id === product?.category_id);
     },[product]);
+
+    useEffect(()=>{
+        if(selecteSize){
+            setError('');
+        }
+    },[selecteSize]);
+
+    const sizes = useMemo(()=>{
+        const sizeSet = _.uniq(_.map(product?.size,'size'));
+        return sizeSet
+
+    },[product]);
+
 
     useEffect(() => {
         setImage(product?.thumbnail);
@@ -62,9 +78,18 @@ const ProductDetails = () => {
             </div>
             <div className='w-[60%] px-10'>
                 {/* Product Description */}
-                <Breadcrumb links={breadCrumbLinks}/>
+                <Breadcrumb links={breadCrumbLinks} />
                 <p className='text-3xl pt-4'>{product?.name}</p>
-                <Rating rating={product?.rating}/>
+                <Rating rating={product?.rating} />
+                {/* Price Tag */}
+                <p className='text-xl bold py-2'>${product?.price}</p>
+                <div className='flex flex-col py-2'>
+                    <div className='flex gap-2'>
+                        <p className='text-sm bold'>Select Size</p>
+                        <Link className='text-sm text-gray-500 hover:text-gray-900' to={'https://en.wikipedia.org/wiki/Clothing_sizes'} target='_blank'>{'Size Guide ->'}</Link>
+                    </div>
+                </div>
+                <div className='mt-2'><SizeFilter sizes={product?.size} hidleTitle/> </div>
             </div>
 
         </div>
