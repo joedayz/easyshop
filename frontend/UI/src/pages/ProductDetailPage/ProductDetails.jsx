@@ -48,7 +48,7 @@ const ProductDetails = () => {
     }, [product]);
 
     const similarProducts = useMemo(() =>{
-        return content?.products?.filter((item) => item?.type_id === product?.type_id);
+        return content?.products?.filter((item) => (item?.type_id === product?.type_id && item?.id !== product?.id));
     }, [product]);
 
 
